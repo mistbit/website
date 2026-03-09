@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mistbit — AI-Native Company</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #fafafa;
+      --bg-tertiary: #f5f5f5;
+      --text-primary: #111111;
+      --text-secondary: #666666;
+      --text-tertiary: #999999;
+      --accent: #111111;
+      --border: #e5e5e5;
+      --gradient-1: #6366f1;
+      --gradient-2: #8b5cf6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--text-primary);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--text-primary);
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-tertiary);
+    }
+
+    .lang-btn:hover {
+      border-color: var(--text-tertiary);
+      color: var(--text-secondary);
+    }
+
+    .lang-btn.active {
+      background: var(--text-primary);
+      color: white;
+      border-color: var(--text-primary);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+    }
+
+    .hero-content {
+      max-width: 680px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--text-primary);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-tertiary);
+    }
+
+    /* Products */
+    .products {
+      padding: 100px 0;
+      background: var(--bg-secondary);
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-header h2 {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      transition: all 0.2s;
+    }
+
+    .product-card:hover {
+      border-color: var(--text-tertiary);
+    }
+
+    .product-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .product-card h3 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .product-card h3 a:hover {
+      color: var(--text-secondary);
+    }
+
+    .product-card p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Features */
+    .features {
+      padding: 100px 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-item {
+      padding: 24px 0;
+    }
+
+    .feature-item h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature-item p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-left p {
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-links a {
+      color: var(--text-secondary);
+      transition: color 0.2s;
+    }
+
+    .social-links a:hover {
+      color: var(--text-primary);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo">
+        <span class="logo-icon">m</span>
+        mistbit
+      </a>
+      <div class="header-right">
+        <nav>
+          <a href="#products" data-i18="nav_products">Products</a>
+          <a href="#features" data-i18="nav_features">About</a>
+          <a href="https://github.com/mistbit" target="_blank">GitHub</a>
+        </nav>
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="zh">中</button>
+          <button class="lang-btn" data-lang="ja">日本語</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 data-i18="hero_title">Building the future with<br>intelligent agents</h1>
+          <p data-i18="hero_desc">mistbit is an AI-native company dedicated to creating powerful, autonomous agents that transform how we work, trade, and communicate.</p>
+          <div class="hero-cta">
+            <a href="#products" class="btn btn-primary" data-i18="cta_products">Explore Products</a>
+            <a href="https://github.com/mistbit" class="btn btn-secondary" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="products">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18="products_title">Our Products</h2>
+        </div>
+        <div class="products-grid">
+          <div class="product-card">
+            <h3><a href="https://github.com/mistbit/kurisu" target="_blank">Kurisu</a></h3>
+            <p data-i18="kurisu_desc">AI-Native Quantitative Trading Agent & Research Platform. Build, test, and deploy autonomous trading strategies with AI.</p>
+          </div>
+          <div class="product-card">
+            <h3><a href="https://github.com/mistbit/voicememo" target="_blank">VoiceMemo</a></h3>
+            <p data-i18="voicememo_desc">Professional high-fidelity audio recording for macOS. Capture real-time WeChat voice conversations using native frameworks.</p>
+          </div>
+          <div class="product-card">
+            <h3><a href="https://github.com/mistbit/fastwhisper" target="_blank">FastWhisper</a></h3>
+            <p data-i18="fastwhisper_desc">Lightning-fast speech recognition powered by Whisper. Transform audio to text with unprecedented speed.</p>
+          </div>
+          <div class="product-card">
+            <h3><a href="https://github.com/mistbit/video-translation-agent" target="_blank">Video Translation Agent</a></h3>
+            <p data-i18="video_desc">Automated video translation and dubbing powered by AI. Break language barriers with intelligent localization.</p>
+          </div>
+          <div class="product-card">
+            <h3><a href="https://github.com/mistbit/paddle-matrix" target="_blank">Paddle Matrix</a></h3>
+            <p data-i18="paddle_desc">Video Subtitle OCR Service. Extract subtitles from videos with high accuracy using advanced OCR technology.</p>
+          </div>
+          <div class="product-card">
+            <h3><a href="https://github.com/mistbit/fastmail" target="_blank">FastMail</a></h3>
+            <p data-i18="fastmail_desc">Simple and fast email sending gateway. Reliable email delivery infrastructure for developers and businesses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18="features_title">Why mistbit</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feature-item">
+            <h3 data-i18="feature1_title">AI-First Design</h3>
+            <p data-i18="feature1_desc">Every product is designed from the ground up with AI as the core capability, not an afterthought.</p>
+          </div>
+          <div class="feature-item">
+            <h3 data-i18="feature2_title">High Performance</h3>
+            <p data-i18="feature2_desc">Optimized for speed and efficiency. Our tools handle demanding workloads without compromise.</p>
+          </div>
+          <div class="feature-item">
+            <h3 data-i18="feature3_title">Open Source</h3>
+            <p data-i18="feature3_desc">We believe in transparent, collaborative development. All projects are open source and community-driven.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <a href="/" class="logo">
+            <span class="logo-icon">m</span>
+            mistbit
+          </a>
+          <p>© 2026 mistbit</p>
+        </div>
+        <div class="social-links">
+          <a href="https://github.com/mistbit" target="_blank" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        nav_products: "Products",
+        nav_features: "About",
+        hero_title: "Building the future with<br>intelligent agents",
+        hero_desc: "mistbit is an AI-native company dedicated to creating powerful, autonomous agents that transform how we work, trade, and communicate.",
+        cta_products: "Explore Products",
+        products_title: "Our Products",
+        kurisu_desc: "AI-Native Quantitative Trading Agent & Research Platform. Build, test, and deploy autonomous trading strategies with AI.",
+        voicememo_desc: "Professional high-fidelity audio recording for macOS. Capture real-time WeChat voice conversations using native frameworks.",
+        fastwhisper_desc: "Lightning-fast speech recognition powered by Whisper. Transform audio to text with unprecedented speed.",
+        video_desc: "Automated video translation and dubbing powered by AI. Break language barriers with intelligent localization.",
+        paddle_desc: "Video Subtitle OCR Service. Extract subtitles from videos with high accuracy using advanced OCR technology.",
+        fastmail_desc: "Simple and fast email sending gateway. Reliable email delivery infrastructure for developers and businesses.",
+        features_title: "Why mistbit",
+        feature1_title: "AI-First Design",
+        feature1_desc: "Every product is designed from the ground up with AI as the core capability, not an afterthought.",
+        feature2_title: "High Performance",
+        feature2_desc: "Optimized for speed and efficiency. Our tools handle demanding workloads without compromise.",
+        feature3_title: "Open Source",
+        feature3_desc: "We believe in transparent, collaborative development. All projects are open source and community-driven."
+      },
+      zh: {
+        nav_products: "产品",
+        nav_features: "关于",
+        hero_title: "用智能代理<br>构建未来",
+        hero_desc: "mistbit 是一家 AI 原生公司，致力于创建强大的自主代理，改变我们的工作、交易和沟通方式。",
+        cta_products: "探索产品",
+        products_title: "产品",
+        kurisu_desc: "AI 原生量化交易代理与研究平台。使用 AI 构建、测试和部署自主交易策略。",
+        voicememo_desc: "专业高保真 macOS 音频录制工具。使用原生框架捕获微信实时语音对话。",
+        fastwhisper_desc: "基于 Whisper 的极速语音识别。以惊人的速度将音频转换为文本。",
+        video_desc: "AI 驱动的自动化视频翻译和配音。打破语言障碍，实现智能本地化。",
+        paddle_desc: "视频字幕 OCR 服务。使用先进的 OCR 技术从视频中提取字幕。",
+        fastmail_desc: "简单快速的邮件发送网关。为开发者和企业提供可靠的邮件发送基础设施。",
+        features_title: "为什么选择 mistbit",
+        feature1_title: "AI 优先设计",
+        feature1_desc: "我们从零开始将 AI 作为核心能力来设计每一款产品，而非事后补救。",
+        feature2_title: "高性能",
+        feature2_desc: "针对速度和效率进行优化。我们的工具能够处理苛刻的工作负载。",
+        feature3_title: "开源",
+        feature3_desc: "我们相信透明、协作的开发方式。所有项目均为开源，由社区驱动。"
+      },
+      ja: {
+        nav_products: "製品",
+        nav_features: "概要",
+        hero_title: "インテリジェントなエージェントで<br>未来を築く",
+        hero_desc: "mistbitは、作業を、取引を、コミュニケーションを変革する強力な自律型エージェントを生み出すことを使命とするAIネイティブ企業です。",
+        cta_products: "製品を見る",
+        products_title: "製品",
+        kurisu_desc: "AIネイティブ量化取引エージェント＆リサーチプラットフォーム。AIで自動取引戦略を構築・テスト・デプロイ。",
+        voicememo_desc: "プロフェッショナルな高忠実度macOS音声録音。ネイティブフレームワークでWeChatのリアルタイム音声会話をキャプチャ。",
+        fastwhisper_desc: "Whisper搭載の超高速音声認識。前例のない速度で音声をテキストに変換。",
+        video_desc: "AI駆動の自動動画翻訳・吹き替え。インテリジェントなローカライゼーションで言語の壁を打破。",
+        paddle_desc: "動画字幕OCRサービス。高度なOCR技術で動画から字幕を抽出。",
+        fastmail_desc: "シンプルで高速なメール送信ゲートウェイ。開発者向けメール配信インフラ。",
+        features_title: "mistbitの強み",
+        feature1_title: "AIファースト設計",
+        feature1_desc: "すべての製品は、AIをコア能力としてゼロから設計されています。",
+        feature2_title: "ハイパフォーマンス",
+        feature2_desc: "速度と効率に最適化。要求の厳しいワークロードを処理できます。",
+        feature3_title: "オープンソース",
+        feature3_desc: "透明性ある共同開発を信じています。すべてのプロジェクトはオープンソースです。"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18]').forEach(el => {
+        const key = el.getAttribute('data-i18');
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      localStorage.setItem('mistbit-lang', lang);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
+
+    const savedLang = localStorage.getItem('mistbit-lang') || 'en';
+    setLanguage(savedLang);
+  </script>
+</body>
+</html>
